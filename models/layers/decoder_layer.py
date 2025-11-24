@@ -14,10 +14,10 @@ import torch.nn as nn
 
 from typing import Optional
 
-from attention.multi_head_attention import MultiHeadAttention
-from embeddings.positional_encoding import PositionalEncoding
-from feedforward.FFN import FeedForwardNetwork
-from layers.residual_connection import ResidualConnection
+from ..attention.multi_head_attention import MultiHeadAttention
+from ..embeddings.positional_encoding import PositionalEncoding
+from ..feedforward.FFN import FeedForwardNetwork
+from .residual_connection import ResidualConnection
 
 
 class TransformerDecoderLayer(nn.Module):
@@ -48,14 +48,14 @@ class TransformerDecoderLayer(nn.Module):
     ):
 
         # 1. Masked Self-Attention
-        x = self.residual1(x, lambda x_norm: self.self_attn(x_norm, x_norm, x_norm, mask=tgt_mask)[0])
+        x = self.residual1(
+            x, lambda x_norm: self.self_attn(x_norm, x_norm, x_norm, mask=tgt_mask)[0]
+        )
 
         # 2. Cross-Attention: Q = decoder, K/V = encoder output
         x = self.residual2(
             x,
-            lambda x_norm: self.cross_attn(
-                x_norm, memory, memory, mask=memory_mask
-            )[0],
+            lambda x_norm: self.cross_attn(x_norm, memory, memory, mask=memory_mask)[0],
         )
 
         # 3. FFN

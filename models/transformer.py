@@ -13,9 +13,9 @@ import torch
 import torch.nn as nn
 from typing import Optional
 
-from encoder import TransformerEncoder
-from decoder import TransformerDecoder
-from embeddings.positional_encoding import PositionalEncoding
+from .encoder import TransformerEncoder
+from .decoder import TransformerDecoder
+from .embeddings.positional_encoding import PositionalEncoding
 
 
 class TokenEmbedding(nn.Module):

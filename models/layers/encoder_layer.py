@@ -14,10 +14,10 @@ import torch.nn as nn
 
 from typing import Optional
 
-from attention.multi_head_attention import MultiHeadAttention
-from embeddings.positional_encoding import PositionalEncoding
-from feedforward.FFN import FeedForwardNetwork
-from layers.residual_connection import ResidualConnection
+from ..attention.multi_head_attention import MultiHeadAttention
+from ..embeddings.positional_encoding import PositionalEncoding
+from ..feedforward.FFN import FeedForwardNetwork
+from .residual_connection import ResidualConnection
 
 
 class TransformerEncoderLayer(nn.Module):

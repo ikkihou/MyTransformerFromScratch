@@ -13,8 +13,8 @@ import torch
 import torch.nn as nn
 from typing import Optional
 
-from layers.decoder_layer import TransformerDecoderLayer
-from embeddings.positional_encoding import PositionalEncoding
+from .layers.decoder_layer import TransformerDecoderLayer
+from .embeddings.positional_encoding import PositionalEncoding
 
 
 class TransformerDecoder(nn.Module):
