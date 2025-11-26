@@ -48,14 +48,12 @@ class TransformerDecoderLayer(nn.Module):
     ):
 
         # 1. Masked Self-Attention
-        x = self.residual1(
-            x, lambda x_norm: self.self_attn(x_norm, x_norm, x_norm, mask=tgt_mask)[0]
-        )
+        x = self.residual1(x, lambda x: self.self_attn(x, x, x, mask=tgt_mask)[0])
 
         # 2. Cross-Attention: Q = decoder, K/V = encoder output
         x = self.residual2(
             x,
-            lambda x_norm: self.cross_attn(x_norm, memory, memory, mask=memory_mask)[0],
+            lambda x: self.cross_attn(x, memory, memory, mask=memory_mask)[0],
         )
 
         # 3. FFN

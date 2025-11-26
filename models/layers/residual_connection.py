@@ -26,5 +26,5 @@ class ResidualConnection(nn.Module):
         """
         sublayer: a function that takes normalized x
         """
-        out = sublayer(self.norm(x))
+        out = self.norm(sublayer(x))
         return x + self.dropout(out)

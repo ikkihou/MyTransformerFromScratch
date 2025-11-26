@@ -34,7 +34,7 @@ class TransformerEncoderLayer(nn.Module):
 
     def forward(self, x, src_mask: Optional[torch.Tensor] = None):
         # 1. Self-Attention + Residual
-        x = self.residual1(x, lambda x_norm: self.self_attn(x_norm, mask=src_mask)[0])
+        x = self.residual1(x, lambda x: self.self_attn(x, mask=src_mask)[0])
 
         # 2. FFN + Residual
         x = self.residual2(x, self.ffn)
